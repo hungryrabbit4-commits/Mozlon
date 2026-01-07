@@ -1,14 +1,11 @@
 import flet as ft
 import json
 import os
-import time
 
-# --- КОНФИГУРАЦИЯ ФАЙЛОВ ---
-TRACKS_DB = "muzlon_tracks.json"
-USERS_DB = "muzlon_users.json"
-ADMIN_PASS_CODE = "admin123321"
-DEFAULT_IMG = "https://cdn-icons-png.flaticon.com/512/3844/3844724.png"
-
+# Этот код автоматически найдет папку приложения, где разрешена запись
+data_dir = os.getenv("FLET_APP_DATA_DIR", ".")
+TRACKS_DB = os.path.join(data_dir, "muzlon_tracks.json")
+USERS_DB = os.path.join(data_dir, "muzlon_users.json")
 def main(page: ft.Page):
     # 1. Приложение просто называется Muzlon
     page.title = "Muzlon"
@@ -471,5 +468,6 @@ def main(page: ft.Page):
     )
     
     show_auth_screen()
+
 
 ft.app(target=main)
