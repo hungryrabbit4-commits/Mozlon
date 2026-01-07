@@ -24,14 +24,14 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0'
+          # Поднимаем версию Flutter до актуальной
+          flutter-version: '3.24.0'
 
       - name: Flet Build APK
         run: |
-          # Принудительно очищаем кэш и собираем
-          flet build apk --verbose
+          # Добавляем --yes, чтобы сборщик не задавал вопросов и не зависал
+          flet build apk --verbose --yes
         env:
-          # Помогает избежать проблем с лицензиями Android на сервере
           ANDROID_HOME: /usr/local/lib/android/sdk
 
       - name: Upload APK
